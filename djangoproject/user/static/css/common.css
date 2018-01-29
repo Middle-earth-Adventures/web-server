@@ -1,0 +1,39 @@
+input {
+	width : 100%;
+}
+
+.banner-text {
+	text-align:center;
+}
+
+.dontShow {
+	display: none;
+}
+
+.mea-form {
+	font-size: 16px;
+}
+.mea-button {
+	text-align: center;
+	vertical-align: center;
+	width:100%;
+	height: 2rem;
+}
+.mea-button-signup {
+	background-color: #AA5544;
+	color: #FFFFFF;
+}
+.mea-button-signin {
+	background-color: #55AA44;
+	color: #FFFFFF;
+}
+.mea-button-back {
+	background-color: #55AA44;
+	color: #FFFFFF;
+	font-style : bold;
+}
+.mea-button-signout {
+	background-color: #BB4422;
+	color: #FFFFFF;
+	font-style : bold;	
+}

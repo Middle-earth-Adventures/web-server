@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+
+	{% load static %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="{% static "css/common.css" %}"/>
+
+	<title>MiddleEath Adventures</title>
+</head>
+<body>
+<div class="row">
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-xs-2 col-0"></div>
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-8 col-12">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="banner-text">Middle Earth Adventures</h1>
+				<h2 class="banner-text">Cuenta</h2>
+			</div>
+		</div>
+		<div class="row mea-form">
+
+			<div id="acc_logout_b_c" class="col-12" >
+				<div id="acc_logout_b" class="mea-button mea-button-signout">Salir</div>
+			</div>
+
+			<div id="name_l_c" class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-5">
+				<label>Nombre</label>
+			</div>
+			<div id="name_i_c" class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-7">
+				<input id="name_i" type="text" />
+			</div>
+
+			<div id="error_playermsg_c" class="col-12 dontShow">
+				<div class="alert alert-danger">No se pudo crear personaje. Intentelo de nuevo</div>
+			</div>
+			<div id="success_playermsg_c" class="col-12 dontShow">
+				<div class="alert alert-success">Personaje creado</div>
+			</div>
+
+			<div id="player_create_b_c" class="col-12" >
+				<div id="player_create_b" class="mea-button mea-button-signin">Crear personaje</div>
+			</div>
+
+			<div class="col-12">
+				<h4 class="banner-text">Personajes</h4>
+			</div>
+			<div class="col-12 dontShow">
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-xs-2 col-0"></div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{% static "js/login.js" %}""></script>			{# must go first #}
+<script type="text/javascript" src="{% static "js/createplayer.js" %}""></script>
+
+</body>
+</html>
