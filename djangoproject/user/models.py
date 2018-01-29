@@ -303,7 +303,7 @@ class Players(models.Model):
     sex = models.IntegerField()
     lastlogin = models.BigIntegerField()
     lastip = models.PositiveIntegerField()
-    save = models.IntegerField()
+    saveOT = models.IntegerField(db_column='save')
     skull = models.IntegerField()
     skulltime = models.IntegerField()
     lastlogout = models.BigIntegerField()

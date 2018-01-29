@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
 
-from .models import Accounts
+from .models import Accounts, Players
 
 
 
@@ -58,7 +58,7 @@ def createAccount(request):
 		return HttpResponse(status=400)
 
 	accountData = json.loads(request.body.decode('utf8'))
-	print("Account data\n\tEmail: "+accountData["email"]+"\n\tUser: "+accountData["user"]+"\n\tPassword: "+str(accountData["password"]).encode("utf8"), file=sys.stderr)
+	print("Account data\n\tEmail: "+accountData["email"]+"\n\tUser: "+accountData["user"]+"\n\tPassword: "+accountData["password"], file=sys.stderr)
 	
 	newAccount = Accounts(
 		name = accountData["user"],
@@ -119,7 +119,7 @@ def createPlayer(request):
 
 	if (request.method != "POST"):
 		print("not a POST request: " + request.method, file=sys.stderr)
-		return HttpResponse("BAD REQUEST")
+		return HttpResponse(status="400")
 
 	# Authorize Django User before considering player's creation
 	user = authenticate(request, username=request.session["username"], password=request.session["password"])
@@ -131,64 +131,67 @@ def createPlayer(request):
 	print("Player received data\n\tUser: "+request.session["username"]+"\n\tPlayer's name: "+playerData["name"], file=sys.stderr)
 
 	# Verify if player already exists
-	if Players.object.get(name__exact=playerData["name"], account__exact=request.session["username"]) is not None: # DoesNotExistException
-		return HttpResponse(status=409)
+	if len(Players.objects.filter(name__exact=playerData["name"])) != 0:
+		return HttpResponse("1", content_type="text/plain", status=409)
+
+	account = Accounts.objects.filter(name__exact=request.session["username"])
+	if len(account) != 1:
+		return HttpResponse("2", content_type="text/plain", status=409)
 
 	newPlayer = Players(
-		name = playerData["name"],
-	    group_id = 0,
-	    account = request.session["username"],
-	    level = 1,
-	    vocation = 0,
-	    health = 120,
-	    healthmax = 120,
-	    experience = 0,
-	    lookbody = 0,
-	    lookfeet = 0,
-	    lookhead = 0,
-	    looklegs = 0,
-	    looktype = 0,
-	    lookaddons = 0,
-	    maglevel = 0,
-	    mana = 20,
-	    manamax = 20,
-	    manaspent = 0,
-	    soul = 100,
-	    town_id = 0,
-	    posx = 0,
-	    posy = 0,
-	    posz = 0,
-	    conditions = 0,
-	    cap = 250,
-	    sex = 0,
-	    lastlogin = 0,
-	    lastip = 0,
-	    save = 0,
-	    skull = 0,
-	    skulltime = 0,
-	    lastlogout = 0,
-	    blessings = 0,
-	    onlinetime = 0,
-	    deletion = 0,
-	    balance = 0,
-	    offlinetraining_time = 0,
-	    offlinetraining_skill = 0,
-	    stamina = 100,
-	    skill_fist = 10,
-	    skill_fist_tries = 0,
-	    skill_club = 10,
-	    skill_club_tries = 0,
-	    skill_sword = 10,
-	    skill_sword_tries = 0,
-	    skill_axe = 10,
-	    skill_axe_tries = 0,
-	    skill_dist = 10,
-	    skill_dist_tries = 0,
-	    skill_shielding = 10,
-	    skill_shielding_tries = 0,
-	    skill_fishing = 0,
-	    skill_fishing_tries = 0
-	)
+		name = str(playerData["name"]),
+		group_id = 0,
+		account = account[0],
+		level = 1,
+		vocation = 0,
+		health = 120,
+		healthmax = 120,
+		experience = 0,
+		lookbody = 0,
+		lookfeet = 0,
+		lookhead = 0,
+		looklegs = 0,
+		looktype = 0,
+		lookaddons = 0,
+		maglevel = 0,
+		mana = 20,
+		manamax = 20,
+		manaspent = 0,
+		soul = 100,
+		town_id = 0,
+		posx = 0,
+		posy = 0,
+		posz = 0,
+		conditions = "",
+		cap = 250,
+		sex = 0,
+		lastlogin = 0,
+		lastip = 0,
+		saveOT = 0,
+		skull = 0,
+		skulltime = 0,
+		lastlogout = 0,
+		blessings = 0,
+		onlinetime = 0,
+		deletion = 0,
+		balance = 0,
+		offlinetraining_time = 0,
+		offlinetraining_skill = 0,
+		stamina = 100,
+		skill_fist = 10,
+		skill_fist_tries = 0,
+		skill_club = 10,
+		skill_club_tries = 0,
+		skill_sword = 10,
+		skill_sword_tries = 0,
+		skill_axe = 10,
+		skill_axe_tries = 0,
+		skill_dist = 10,
+		skill_dist_tries = 0,
+		skill_shielding = 10,
+		skill_shielding_tries = 0,
+		skill_fishing = 0,
+		skill_fishing_tries = 0)
 	newPlayer.save()
 
 	return HttpResponse(status=200)

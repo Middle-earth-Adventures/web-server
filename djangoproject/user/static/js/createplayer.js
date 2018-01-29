@@ -15,8 +15,9 @@ var postCreatePlayer = function() {
 
 	ajaxSetup();
 	$.ajax({
-	    type : "GET",
+	    type : "POST",
 	    url : "/player/create",
+	    data : JSON.stringify(jsonData),
 	    success: function(){
 	        showSuccessAtPlayerCreation();
 	        blankCreatePlayerForm();
@@ -26,6 +27,7 @@ var postCreatePlayer = function() {
 			console.log("data: " + XMLHttpRequest.responseText);
 			console.log("error: " + errorThrown);
 			showErrorAtPlayerCreation();
+			blankCreatePlayerForm();
 	    }
 	});
 }
@@ -57,7 +59,7 @@ var ajaxSetup = function() {
 }
 
 var blankCreatePlayerForm = function() {
-	$("#name_i").text("")
+	$("#name_i").val("")
 }
 var showSuccessAtPlayerCreation = function() {
 	$("#success_playermsg_c").removeClass("dontShow");
