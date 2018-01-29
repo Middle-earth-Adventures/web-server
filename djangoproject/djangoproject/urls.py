@@ -18,7 +18,13 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # renders
     path('', include('user.urls')),
+    path('account', include('user.urls')),
+    # services
     path('accounts/create', include('user.urls')),
     path('accounts/signin', include('user.urls')),
+    path('accounts/signout', include('user.urls')),
+    path('player/create', include('user.urls')),
+    
 ]

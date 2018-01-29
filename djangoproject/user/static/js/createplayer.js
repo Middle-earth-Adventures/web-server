@@ -9,15 +9,14 @@ $(function() {
 })
 
 var postCreatePlayer = function() {
+	jsonData = {
+		"name" : $("#name_i").val(),
+	};
+
 	ajaxSetup();
 	$.ajax({
-	    type : "POST",
-	    url : "/accounts/signin",
-	    data : JSON.stringify(jsonData),
-	    headers: {
-	      'Accept': 'application/json',
-	      'Content-Type': 'application/json'
-	    },
+	    type : "GET",
+	    url : "/player/create",
 	    success: function(){
 	        showSuccessAtPlayerCreation();
 	        blankCreatePlayerForm();

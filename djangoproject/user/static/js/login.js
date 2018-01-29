@@ -21,7 +21,9 @@ var postSignin = function() {
 	      'Accept': 'application/json',
 	      'Content-Type': 'application/json'
 	    },
-	    success: function() {},
+	    success: function(response) {
+	    	window.location.href = response;
+	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("status: " + textStatus);
 			console.log("data: " + XMLHttpRequest.responseText);
@@ -34,19 +36,16 @@ var postSignin = function() {
 var postSignout = function() {
 	ajaxSetup();
 	$.ajax({
-	    type : "POST",
+	    type : "GET",
 	    url : "/accounts/signout",
-	    data : JSON.stringify(jsonData),
-	    headers: {
-	      'Accept': 'application/json',
-	      'Content-Type': 'application/json'
+	    success: function(response) {
+	    	window.location.href = response;
 	    },
-	    success: function() {},
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("status: " + textStatus);
 			console.log("data: " + XMLHttpRequest.responseText);
 			console.log("error: " + errorThrown);
-			showErrorAtSignin();
+			showErrorAtAccountSignout();
 	    }
 	});
 }
@@ -77,3 +76,6 @@ var ajaxSetup = function() {
 	});
 }
 
+var showErrorAtAccountSignout = function() {
+	$("#error_signoutmsg_c").removeClass("dontShow");
+}
