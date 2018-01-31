@@ -18,7 +18,7 @@ var postCreatePlayer = function() {
 	    type : "POST",
 	    url : "/player/create",
 	    data : JSON.stringify(jsonData),
-	    success: function(){
+	    success: function(data, textStatus, jqXHR){
 	        showSuccessAtPlayerCreation();
 	        blankCreatePlayerForm();
 	    },

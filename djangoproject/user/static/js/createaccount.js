@@ -51,7 +51,7 @@ var postAccountCreation = function() {
 	      'Accept': 'application/json',
 	      'Content-Type': 'application/json'
 	    },
-	    success: function(){
+	    success: function(data, textStatus, jqXHR){
 	        formLooksSwitch();
 	        showSuccessAtAccCreation();
 	    },

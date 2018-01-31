@@ -21,8 +21,8 @@ var postSignin = function() {
 	      'Accept': 'application/json',
 	      'Content-Type': 'application/json'
 	    },
-	    success: function(response) {
-	    	window.location.href = response;
+	    success: function(data, textStatus, jqXHR) {
+	    	window.location.href = data;
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("status: " + textStatus);
@@ -38,8 +38,8 @@ var postSignout = function() {
 	$.ajax({
 	    type : "GET",
 	    url : "/accounts/signout",
-	    success: function(response) {
-	    	window.location.href = response;
+	    success: function(data, textStatus, jqXHR) {
+	    	window.location.href = data;
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("status: " + textStatus);
