@@ -1,7 +1,5 @@
 /** WINDOW LOADED ********************/
 $(function() {
-	console.log("cargado!");
-
 	// Attack event to form buttons
 	$("#acc_signup_switch_b").on("click", function() {
 		console.log("switch looks");

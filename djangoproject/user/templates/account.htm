@@ -6,8 +6,6 @@
 	{% load static %}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 	<link rel="stylesheet" href="{% static "css/common.css" %}"/>
-	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
 
 	<title>MiddleEath Adventures</title>
 </head>
@@ -41,9 +39,6 @@
 			<div id="error_playermsg_c" class="col-12 dontShow">
 				<div class="alert alert-danger">No se pudo crear personaje. Intentelo de nuevo</div>
 			</div>
-			<div id="success_playermsg_c" class="col-12 dontShow">
-				<div class="alert alert-success">Personaje creado</div>
-			</div>
 
 			<div id="player_create_b_c" class="col-12" >
 				<div id="player_create_b" class="mea-button mea-button-signin">Crear personaje</div>
@@ -53,23 +48,8 @@
 				<h4 class="banner-text">Personajes</h4>
 			</div>
 
-			{# Character table #}
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Nombre</th>
-						<th>Level</th>
-						<th>Estamina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr id="playersRow" v-for="player in playersList">
-						<td> {{player.name}} </td>
-						<td> {{player.level}} </td>
-						<td> {{player.stamina}} </td>
-					</tr>
-				</tbody>
-			</table>
+			<div id="playersList-c" class="col-12"></div>
+
 		</div>
 	</div>
 	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-xs-2 col-0"></div>
@@ -82,8 +62,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="{% static "js/login.js" %}""></script>			{# must go first #}
-<script type="text/javascript" src="{% static "js/createplayer.js" %}""></script>
 <script type="text/javascript" src="{% static "js/accountsPlayer.js" %}""></script>
+<script type="text/javascript" src="{% static "js/createplayer.js" %}""></script>
 
 </body>
 </html>

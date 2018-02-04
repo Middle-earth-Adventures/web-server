@@ -5,7 +5,6 @@ $(function() {
 	$("#acc_logout_b").on("click", function() {
 		postSignout();
 	});
-	
 })
 
 var postCreatePlayer = function() {
@@ -19,8 +18,10 @@ var postCreatePlayer = function() {
 	    url : "/player/create",
 	    data : JSON.stringify(jsonData),
 	    success: function(data, textStatus, jqXHR){
-	        showSuccessAtPlayerCreation();
 	        blankCreatePlayerForm();
+
+	        //refresh player's list
+	        postCreatePlayersList();
 	    },
 	    error: function(XMLHttpRequest, textStatus, errorThrown) {
 			console.log("status: " + textStatus);

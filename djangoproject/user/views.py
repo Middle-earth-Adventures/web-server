@@ -210,13 +210,11 @@ def getAccountsPlayers(request):
 	user = authenticate(request, username=request.session["username"], password=request.session["password"])
 	if user is None:
 		print("not authorized to list platers: " + request.body, file=sys.stderr)
-		return JsonReponse({}, statusCode=403)
+		return HttpResponse(status=403)
 
 	account = Accounts.objects.get(name__exact=request.session["username"], password__exact=request.session["password"]) # DoesNotExistException
 	players = Players.objects.filter(account__exact=account)
 
-	data = [{'name': player.name, 'level': player.level, 'stamina': player.stamina} for player in players]
-	data = {"players":data}
-
-	return JsonResponse(json.dumps(data), safe=False)
+	jsonPlayersData = serializers.serialize("json", players, fields=('name','level','stamina'))
+	return JsonResponse(jsonPlayersData, safe=False)
 
