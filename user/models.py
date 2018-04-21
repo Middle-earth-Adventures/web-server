@@ -7,9 +7,9 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 
 import sys
+from hashlib import sha1
 
 from django.db import models
-from hashlib import sha1
 
 
 class AccountBanHistory(models.Model):

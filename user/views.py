@@ -1,19 +1,16 @@
 import json
-import time
 import sys
+import time
 from hashlib import sha1
 
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 from django.core import serializers
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 
 from .models import Accounts, Players
-
-
 
 ## RENDERS ############################
 
@@ -217,4 +214,3 @@ def getAccountsPlayers(request):
 
 	jsonPlayersData = serializers.serialize("json", players, fields=('name','level','stamina'))
 	return JsonResponse(jsonPlayersData, safe=False)
-

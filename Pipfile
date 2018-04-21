@@ -4,6 +4,9 @@ url = "https://pypi.python.org/simple"
 name = "pypi"
 
 [dev-packages]
+pycodestyle = "*"
+isort = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.5"
