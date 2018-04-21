@@ -11,5 +11,5 @@ urlpatterns = [
     path('accounts/signout', views.signout, name='signout'),
     path('player/create', views.createPlayer, name='createPlayer'),
     path('player/accountsPlayers', views.getAccountsPlayers, name='getPlayersFromAccount'),
-    
+
 ]
