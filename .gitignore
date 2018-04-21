@@ -1,2 +1,3 @@
 .idea
-djangoproject/djangoproject/settings/secrets.json
+djangoproject/config/settings/secrets.json
+*.pyc

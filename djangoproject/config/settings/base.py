@@ -15,24 +15,12 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-with open(os.path.join(BASE_DIR, 'djangoproject', 'settings', 'secrets.json')) as f:
-    _secrets = json.loads(f.read())
-
-
-def get_secret(setting, secrets=_secrets):
-    """Get the secret variable or return ImproperlyConfigured."""
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {0} variable on secrets.json file.".format(setting)
-        raise ImproperlyConfigured(error_msg)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = os.environ["OT_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'user.apps.UserConfig',
+    'djangoproject.user',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'djangoproject.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -81,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangoproject.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -90,11 +77,11 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_secret("DB_NAME"),
-        'USER': get_secret("DB_USER"),
-        'PASSWORD': get_secret("DB_PASSWORD"),
-        'HOST': get_secret("DB_HOST"),
-        'PORT': get_secret("DB_PORT"),
+        'NAME': os.environ["OT_DB_NAME"],
+        'USER': os.environ["OT_DB_USER"],
+        'PASSWORD': os.environ["OT_DB_PASSWORD"],
+        'HOST': os.environ["OT_DB_HOST"],
+        'PORT': os.environ["OT_DB_PORT"],
     }
 }
 
