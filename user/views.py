@@ -16,7 +16,7 @@ from .models import Accounts, Players
 # RENDERS ############################
 def index(request):
 
-    if (request.method != "GET"):
+    if request.method != "GET":
         print("not a GET request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -33,7 +33,7 @@ def index(request):
 
 def account(request):
 
-    if (request.method != "GET"):
+    if request.method != "GET":
         print("not a GET request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -51,7 +51,7 @@ def account(request):
 # POST PROCESSORS ####################
 def createAccount(request):
 
-    if (request.method != "POST"):
+    if request.method != "POST":
         print("not a POST request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -76,7 +76,7 @@ def createAccount(request):
 
 def signin(request):
 
-    if (request.method != "POST"):
+    if request.method != "POST":
         print("not a POST request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -102,7 +102,7 @@ def signin(request):
 
 def signout(request):
 
-    if (request.method != "GET"):
+    if request.method != "GET":
         print("not a GET request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -121,7 +121,7 @@ def signout(request):
 
 def createPlayer(request):
 
-    if (request.method != "POST"):
+    if request.method != "POST":
         print("not a POST request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
@@ -206,7 +206,7 @@ def createPlayer(request):
 
 def getAccountsPlayers(request):
 
-    if (request.method != "GET"):
+    if request.method != "GET":
         print("not a GET request: " + request.method, file=sys.stderr)
         return HttpResponse(status=400)
 
