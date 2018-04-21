@@ -1,1 +1,2 @@
-djangoproject/user/*
+.idea
+djangoproject/djangoproject/settings/secrets.json
