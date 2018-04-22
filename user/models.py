@@ -57,9 +57,9 @@ class Accounts(models.Model):
     creation = models.IntegerField()
 
     def save(self, *args, **kwargs):
-	    self.password = sha1(str(self.password).encode('utf8')).hexdigest()
-	    print("SHA1 password : "+str(self.password), file=sys.stderr)
-	    super(Accounts, self).save(*args, **kwargs)
+        self.password = sha1(str(self.password).encode('utf8')).hexdigest()
+        print("SHA1 password : "+str(self.password), file=sys.stderr)
+        super(Accounts, self).save(*args, **kwargs)
 
     class Meta:
         db_table = 'accounts'

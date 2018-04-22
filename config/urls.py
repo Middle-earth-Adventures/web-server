@@ -27,5 +27,5 @@ urlpatterns = [
     path('accounts/signout', include('user.urls')),
     path('player/create', include('user.urls')),
     path('player/accountsPlayers', include('user.urls')),
-    
+
 ]
