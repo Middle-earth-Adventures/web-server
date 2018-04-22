@@ -28,7 +28,7 @@ def index(request):
     except Exception:
         pass
 
-    return render(request, "index.htm")
+    return render(request, "index.html")
 
 
 def account(request):
@@ -45,7 +45,7 @@ def account(request):
         login(request, user)
         pass
 
-    return render(request, "account.htm")
+    return render(request, "account.html")
 
 
 # POST PROCESSORS ####################
@@ -109,11 +109,11 @@ def signout(request):
     # Verify Session + Django User login and logout
     if "username" not in request.session or "username" not in request.session:
         # It can't just logout by username nor password, or can It?
-        return render(request, "index.htm")
+        return render(request, "index.html")
 
     user = authenticate(request, username=request.session["username"], password=request.session["password"])
     if user is None:
-        return render(request, "index.htm")
+        return render(request, "index.html")
 
     logout(request)
     return HttpResponse("/", content_type="text/plain")
