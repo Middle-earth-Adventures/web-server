@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Accounts, Players
 
@@ -109,11 +109,11 @@ def signout(request):
     # Verify Session + Django User login and logout
     if "username" not in request.session or "username" not in request.session:
         # It can't just logout by username nor password, or can It?
-        return render(request, "index.html")
+        return redirect("index")
 
     user = authenticate(request, username=request.session["username"], password=request.session["password"])
     if user is None:
-        return render(request, "index.html")
+        return redirect("index")
 
     logout(request)
     return HttpResponse("/", content_type="text/plain")
